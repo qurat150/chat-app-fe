@@ -1,0 +1,44 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "overrides": [
+    {
+      "files": ["*.js", "*.jsx"],
+      "parserOptions": {
+        "ecmaFeatures": {
+          "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+      },
+      "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:prettier/recommended"
+      ],
+      "rules": {
+        "no-console": 1,
+        "no-multi-spaces": 2,
+        "react/react-in-jsx-scope": "off",
+        "no-unused-vars": 1,
+        "react/jsx-uses-vars": 2,
+        "react/boolean-prop-naming": 2,
+        "react/jsx-key": [
+          2,
+          {
+            "checkFragmentShorthand": true,
+            "warnOnDuplicates": true,
+            "checkKeyMustBeforeSpread": true
+          }
+        ],
+        "react/jsx-no-duplicate-props": [2, { "ignoreCase": true }],
+        "react/no-unused-prop-types": 2,
+        "react/prop-types": 2,
+        "react/self-closing-comp": [1, { "component": true, "html": true }]
+      }
+    }
+  ]
+}
