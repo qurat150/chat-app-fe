@@ -6,7 +6,7 @@ import { UIButton } from 'components';
 import { useNavigate } from 'react-router-dom';
 import { axios } from 'services/http.service';
 import { useDispatch } from 'react-redux';
-import { verifyToken } from 'redux/slices/auth/controller';
+import { setUserProfilePicture } from 'redux/slices/auth/controller';
 
 const SetAvatar = () => {
   // const [isLoading, setIsLoading] = useState(true);
@@ -37,21 +37,14 @@ const SetAvatar = () => {
     if (selectedPfp === undefined) {
       alert('Please select Image first');
     } else {
-      const res = await dispatch(verifyToken());
-      // console.log(res.payload.user._id);
-      const { data } = await axios.post(
-        `auth/setProfilePicture/${res.payload.user._id}`,
-        {
+      try {
+        const payload = {
           image: selectedPfp,
-        }
-      );
-      console.log(data);
-      console.log(data.isSet);
-      if (data.isSet) {
-        res.payload.user.isAvatarImageSet = true;
-        res.payload.user.avatarImage = data.image;
-        navigate('/');
-      } else {
+        };
+        await dispatch(setUserProfilePicture(payload));
+        await navigate('/');
+      } catch (error) {
+        console.log(error);
         alert('Error setting profile picture, please try again');
       }
     }

@@ -8,13 +8,12 @@ const Message = ({ messages }) => {
   return (
     <>
       {messages.map((message, i) => {
-        console.log(message);
         return (
           <FlexBox
             key={i}
             justifyContent={message.fromSelf ? 'flex-end' : 'flex-start'}
           >
-            <StyledMessageBox fromself={message.fromSelf}>
+            <StyledMessageBox key={uuidv4()} fromself={message.fromSelf}>
               {message.message}
             </StyledMessageBox>
           </FlexBox>

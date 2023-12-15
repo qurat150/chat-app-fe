@@ -1,11 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { login, register, verifyToken } from './controller';
+import {
+  login,
+  register,
+  setUserProfilePicture,
+  verifyToken,
+} from './controller';
 import { getLocalAccessToken, setLocalAccessToken } from 'utlis';
 
 const initialState = {
   isLoading: false,
   isLoggedIn: getLocalAccessToken() !== null,
-  user: { data: { role: null, permissions: {}, isLoading: false } },
   currentUser: null,
 };
 
@@ -46,6 +50,19 @@ const authSlice = createSlice({
         }
       })
       .addCase(verifyToken.rejected, (state) => {
+        state.isLoading = false;
+      })
+
+      .addCase(setUserProfilePicture.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(setUserProfilePicture.fulfilled, (state, action) => {
+        if (state) {
+          state.currentUser.avatarImage = action.payload.image;
+          state.currentUser.isAvatarImageSet = true;
+        }
+      })
+      .addCase(setUserProfilePicture.rejected, (state) => {
         state.isLoading = false;
       });
   },

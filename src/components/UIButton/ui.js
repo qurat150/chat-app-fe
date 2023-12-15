@@ -7,8 +7,5 @@ export const UIStyledButton = styled(Button)(({ bgcolor }) => ({
     textTransform: 'inherit',
     fontSize: '15px',
     letterSpacing: '1px',
-    // '&:hover': {
-    //   backgroundColor: '#0c1218',
-    // },
   },
 }));

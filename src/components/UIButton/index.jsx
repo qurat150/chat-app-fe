@@ -14,8 +14,5 @@ UIButton.propTypes = {
 };
 
 UIButton.defaultProps = {
-  //   isLoading: false,
-  //   btnType: 'simple',
   variant: 'contained',
-  //   fullWidth: 'fullWidth',
 };

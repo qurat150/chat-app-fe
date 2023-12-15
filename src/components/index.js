@@ -7,7 +7,6 @@ import ChatHeader from './UserHeader';
 import ChatContainer from './ChatContainer';
 import SendMessageInputField from './Fields/SendMessageInputField';
 import Message from './Message';
-import Logout from './Logout';
 export {
   UIButton,
   UILink,
@@ -18,5 +17,4 @@ export {
   ChatContainer,
   SendMessageInputField,
   Message,
-  Logout,
 };

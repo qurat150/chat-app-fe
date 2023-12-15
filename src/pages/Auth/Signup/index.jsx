@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Grid, Typography } from '@mui/material';
 
@@ -8,7 +7,6 @@ import { UIButton, UILink, UITextField } from 'components';
 import { FormCotainer, StyledGrid } from '../ui';
 
 const Signup = () => {
-  // const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { formData, handleInputChange } = useFormData({
@@ -29,11 +27,7 @@ const Signup = () => {
       const res = await dispatch(register(payload));
       // console.log('signup res', res.payload.status);
       if (!res.payload.status) alert(res.payload.msg);
-      // if (res.payload.status) {
-      //   setTimeout(() => {
-      //     navigate('/set-profile-picture');
-      //   }, 1000);
-      // }
+      // or agr payload success hai tw navigate humny mainlayout se krwa dia
     } catch (error) {
       alert('error during signup', error);
     }
@@ -81,7 +75,7 @@ const Signup = () => {
 
               <Grid item xs={12}>
                 <UIButton fullWidth type="submit">
-                  signup
+                  Signup
                 </UIButton>
               </Grid>
             </Grid>

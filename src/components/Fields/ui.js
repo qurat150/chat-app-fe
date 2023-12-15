@@ -12,3 +12,10 @@ export const StyledTextField = styled(TextField)({
     },
   },
 });
+
+export const SendMessageInput = styled(TextField)(({ theme }) => ({
+  width: '100%',
+  marginTop: theme.spacing(2),
+  border: '2px solid #373737bf',
+  borderRadius: theme.spacing(2),
+}));

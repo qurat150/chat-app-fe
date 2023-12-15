@@ -1,0 +1,12 @@
+/* Styles for WebKit-based browsers */
+::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgb(38, 38, 38); /* Color of the thumb/handle */
+  border-radius: 4px; /* Rounded corners */
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the track */
+  border-radius: 4px; /* Rounded corners */
+}

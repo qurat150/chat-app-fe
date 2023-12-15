@@ -1,19 +1,18 @@
 import styled from '@emotion/styled';
-import { JoinFull } from '@mui/icons-material';
 import Box from '@mui/material/Box';
 
 export const StyledGrid = styled(Box)({
-  width: '100%',
-  height: '100vh',
+  display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  width: '100%',
+  height: '100vh',
   backgroundColor: '#0f171e',
 });
 
 export const FormCotainer = styled(Box)(({ theme }) => ({
-  width: '100%',
   maxWidth: 400,
-  margin: 'auto',
+  margin: '0 30px',
   backgroundColor: '#1a242f',
   padding: theme.spacing(2),
   boxShadow: theme.shadows[3],

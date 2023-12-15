@@ -1,22 +1,34 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Typography } from '@mui/material';
+import { Grid, Typography, useMediaQuery } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import { StyledBox, StyledGridContainer, StyledProfilePicture } from './ui';
 
 const ChatItem = ({ chat, chatWindow }) => {
   const { userName, avatarImage } = chat;
 
+  const isSmallDevice = useMediaQuery((theme) => theme.breakpoints.down('sm'));
+
+  const useNavigateToBack = () => {
+    history.back();
+  };
+
   return (
     <>
       <StyledBox>
         <StyledGridContainer container>
-          <Grid item xs={chatWindow ? 0.8 : 2.5}>
+          <Grid item xs={isSmallDevice ? 2.5 : chatWindow ? 0.8 : 2.5}>
             <StyledProfilePicture src={avatarImage} alt="profilePic" />
           </Grid>
-          <Grid item xs={chatWindow ? 11.2 : 9.5}>
+          <Grid item xs={isSmallDevice ? 9.5 : chatWindow ? 11.2 : 9.5}>
             <Typography>{userName}</Typography>
           </Grid>
+          {isSmallDevice && chatWindow && (
+            <ArrowBackIcon
+              onClick={() => useNavigateToBack()}
+              sx={{ color: 'white' }}
+            />
+          )}
         </StyledGridContainer>
       </StyledBox>
     </>

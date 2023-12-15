@@ -1,13 +1,19 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { getAllUsers, getUserDetail, loginUser, registerUser } from 'apis/auth';
+import {
+  getAllUsers,
+  getUserDetail,
+  loginUser,
+  registerUser,
+  setProfilePicture,
+} from 'apis/auth';
 
-export const login = createAsyncThunk('auth/login', async (data) => {
+export const login = createAsyncThunk('auth/login', async (data, thunkAPI) => {
   try {
     const res = await loginUser(data);
     return res.data;
   } catch (error) {
-    return 'Error', error;
+    return thunkAPI.rejectWithValue(error);
   }
 });
 export const register = createAsyncThunk('auth/signup', async (data) => {
@@ -38,3 +44,16 @@ export const gettingAllUsers = createAsyncThunk('auth/allUsers', async () => {
     return 'Error during verifying token', error;
   }
 });
+
+export const setUserProfilePicture = createAsyncThunk(
+  'auth/setUserProfilePicture',
+  async (data) => {
+    try {
+      const res = await setProfilePicture(data); // all users except current one
+      return res.data;
+    } catch (error) {
+      console.log(error);
+      return 'Error setting profile picture', error;
+    }
+  }
+);

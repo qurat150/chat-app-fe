@@ -19,5 +19,7 @@ export const getAllUsers = async (id) => {
   const res = await axios.get(`/auth/allUsers/${id}`);
   return res;
 };
-
-// '/api/auth/setProfilePicture'
+export const setProfilePicture = async (data) => {
+  const res = await axios.post(`auth/setProfilePicture`, data);
+  return res;
+};
