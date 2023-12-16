@@ -31,13 +31,24 @@ const SendMessageInputField = ({ handleMessageSend }) => {
     if (message.length > 0) {
       handleMessageSend(message);
       setMessage('');
+      if (showEmojiPalette) {
+        setShowEmojiPalette(false);
+      }
     }
   };
 
   return (
     <>
-      {showEmojiPalette && <EmojiPicker onEmojiClick={handleClickEmoji} />}
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', position: 'relative' }}>
+        <div
+          style={{
+            position: 'absolute',
+            top: '-440px',
+            zIndex: 1,
+          }}
+        >
+          {showEmojiPalette && <EmojiPicker onEmojiClick={handleClickEmoji} />}
+        </div>
         <SendMessageInput
           placeholder="Message.."
           variant="outlined"

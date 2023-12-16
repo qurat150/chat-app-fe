@@ -34,7 +34,7 @@ const ChatHeader = () => {
       dispatch(userlogout());
     }
     if (option == 'Profile' || option == 'Account') {
-      alert('Sabar kam chalrha hai is py');
+      alert('Abhi srf logout wala button kam krta hai');
     }
   };
 

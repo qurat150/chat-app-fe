@@ -7,18 +7,22 @@ export const StyledProfilePicture = styled('img')(() => ({
   borderRadius: '36px',
 }));
 
-export const StyledBox = styled(Box)({
+export const StyledBox = styled(Box)(({ chatWindow }) => ({
   width: '100%',
   display: 'flex',
   alignItems: 'center',
   cursor: 'pointer',
   marginTop: '20px',
-  '&:hover': {
-    backgroundColor: 'rgb(38, 38, 38)',
-    borderRadius: '2px',
-    transition: '.3s',
-  },
-});
+  ...(chatWindow
+    ? {}
+    : {
+        '&:hover': {
+          backgroundColor: 'rgb(38, 38, 38)',
+          borderRadius: '2px',
+          transition: '.3s',
+        },
+      }),
+}));
 
 export const StyledGridContainer = styled(Grid)({
   display: 'flex',

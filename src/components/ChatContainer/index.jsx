@@ -10,7 +10,6 @@ import 'customScrollBar.css';
 
 const ChatContainer = ({ currentChat, clearSelectedChat }) => {
   const { currentUser } = useSelector((state) => state.auth);
-  console.log(currentUser);
   const scrollRef = useRef();
 
   const element = scrollRef.current;

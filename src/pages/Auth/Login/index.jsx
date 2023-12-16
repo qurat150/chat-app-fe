@@ -57,6 +57,7 @@ const Login = () => {
                 <UITextField
                   label="Password"
                   name="password"
+                  type="password"
                   value={password}
                   handleInputChange={handleInputChange}
                 />
