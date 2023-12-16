@@ -47,10 +47,10 @@ export const gettingAllUsers = createAsyncThunk('auth/allUsers', async () => {
 
 export const setUserProfilePicture = createAsyncThunk(
   'auth/setUserProfilePicture',
-  async (data) => {
+  async ({ data, cb }) => {
     try {
       const res = await setProfilePicture(data); // all users except current one
-      return res.data;
+      return { data: res.data, cb };
     } catch (error) {
       console.log(error);
       return 'Error setting profile picture', error;

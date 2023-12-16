@@ -11,7 +11,7 @@ const Chat = () => {
   const dispatch = useDispatch();
 
   const [chats, setChats] = useState([]);
-  const [currentChat, setCurrentChat] = useState('');
+  const [currentChat, setCurrentChat] = useState(null);
 
   useEffect(() => {
     const gettingChats = async () => {
@@ -27,12 +27,18 @@ const Chat = () => {
     setCurrentChat(chats[index]);
   };
 
+  const clearSelectedChat = () => {
+    setCurrentChat(null);
+  };
+
   const isSmallDevice = useMediaQuery((theme) => theme.breakpoints.down('sm'));
+  const showChatOnLargeDevice = !isSmallDevice;
+  const showChatOnSmallDevice = isSmallDevice && !currentChat;
 
   return (
     <StyledChatContainer>
       <Grid container spacing={0}>
-        {!isSmallDevice && (
+        {(showChatOnLargeDevice || showChatOnSmallDevice) && (
           <Grid item xs={12} sm={3} sx={{ padding: '20px' }}>
             <ChatHeader />
             {chats.map((chat, index) => (
@@ -42,18 +48,13 @@ const Chat = () => {
             ))}
           </Grid>
         )}
+
         <Grid item xs={12} sm={isSmallDevice ? 12 : 9}>
-          {currentChat !== '' || !isSmallDevice ? (
-            <ChatContainer currentChat={currentChat} />
-          ) : (
-            <div style={{ margin: '10px' }}>
-              <ChatHeader />
-              {chats.map((chat, index) => (
-                <div key={index} onClick={() => changeCurrentChat(index)}>
-                  <ChatItem chat={chat} />
-                </div>
-              ))}
-            </div>
+          {currentChat && (
+            <ChatContainer
+              clearSelectedChat={clearSelectedChat}
+              currentChat={currentChat}
+            />
           )}
         </Grid>
       </Grid>

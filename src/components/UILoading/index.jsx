@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 export default function UILoading() {
   return (
     <Box sx={{ display: 'flex' }}>
-      <CircularProgress sx={{ color: 'white' }} />
+      <CircularProgress sx={{ color: 'black' }} />
     </Box>
   );
 }

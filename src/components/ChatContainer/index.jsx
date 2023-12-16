@@ -8,7 +8,7 @@ import { appSocket } from 'services/socket';
 import { ChatItem, Message, SendMessageInputField } from 'components';
 import 'customScrollBar.css';
 
-const ChatContainer = ({ currentChat }) => {
+const ChatContainer = ({ currentChat, clearSelectedChat }) => {
   const { currentUser } = useSelector((state) => state.auth);
   console.log(currentUser);
   const scrollRef = useRef();
@@ -56,7 +56,11 @@ const ChatContainer = ({ currentChat }) => {
   return (
     <Box sx={{ height: '100vh' }}>
       <div style={{ height: '8vh', marginBottom: '20px' }}>
-        <ChatItem chat={currentChat} chatWindow />
+        <ChatItem
+          clearSelectedChat={clearSelectedChat}
+          chat={currentChat}
+          chatWindow
+        />
       </div>
       <div ref={scrollRef} style={{ height: '72vh', overflow: 'auto' }}>
         <Message messages={messages} />
@@ -71,5 +75,6 @@ const ChatContainer = ({ currentChat }) => {
 export default ChatContainer;
 
 ChatContainer.propTypes = {
-  currentChat: PropTypes.any,
+  currentChat: PropTypes.object,
+  clearSelectedChat: PropTypes.func,
 };

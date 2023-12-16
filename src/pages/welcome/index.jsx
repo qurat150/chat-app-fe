@@ -1,18 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import { UIButton } from 'components';
-// import axios from 'axios';
-// import { setPfpRoute } from 'utlis/ApiRoutes';
 import { useNavigate } from 'react-router-dom';
-import { axios } from 'services/http.service';
 import { useDispatch } from 'react-redux';
+
 import { setUserProfilePicture } from 'redux/slices/auth/controller';
 
 const SetAvatar = () => {
-  // const [isLoading, setIsLoading] = useState(true);
-  const [selectedPfp, setSelectedPfp] = useState(undefined);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [selectedPfp, setSelectedPfp] = useState(undefined);
 
   const getSelectedImage = async () => {
     const input = event.target;
@@ -23,15 +20,10 @@ const SetAvatar = () => {
         showPfp.src = e.target.result;
         setSelectedPfp(e.target.result);
         showPfp.style.display = 'block';
-        // console.log(e.target.result);
       };
       reader.readAsDataURL(input.files[0]);
     }
   };
-
-  useEffect(() => {
-    // console.log(selectedPfp);
-  }, [getSelectedImage]);
 
   const setProfilePicture = async () => {
     if (selectedPfp === undefined) {
@@ -41,8 +33,9 @@ const SetAvatar = () => {
         const payload = {
           image: selectedPfp,
         };
-        await dispatch(setUserProfilePicture(payload));
-        await navigate('/');
+        const cb = () => navigate('/');
+
+        await dispatch(setUserProfilePicture({ data: payload, cb }));
       } catch (error) {
         console.log(error);
         alert('Error setting profile picture, please try again');

@@ -1,13 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { appSocket } from 'services/socket';
 import { useDispatch, useSelector } from 'react-redux';
 import { verifyToken } from 'redux/slices/auth/controller';
+import { UILoading } from 'components';
 
 const MainLayout = ({ isLoggedIn }) => {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.auth);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (isLoggedIn && currentUser) {
@@ -22,6 +24,8 @@ const MainLayout = ({ isLoggedIn }) => {
           await dispatch(verifyToken());
         } catch (error) {
           console.log(error);
+        } finally {
+          setIsLoading(false);
         }
       };
       smth();
@@ -29,7 +33,7 @@ const MainLayout = ({ isLoggedIn }) => {
   }, [isLoggedIn]);
 
   if (!isLoggedIn) return <Navigate to="/signup" />;
-  return <Outlet />;
+  return isLoading ? <UILoading /> : <Outlet />;
 };
 
 export default MainLayout;

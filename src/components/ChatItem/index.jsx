@@ -4,13 +4,13 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import { StyledBox, StyledGridContainer, StyledProfilePicture } from './ui';
 
-const ChatItem = ({ chat, chatWindow }) => {
+const ChatItem = ({ chat, chatWindow, clearSelectedChat }) => {
   const { userName, avatarImage } = chat;
 
   const isSmallDevice = useMediaQuery((theme) => theme.breakpoints.down('sm'));
 
   const useNavigateToBack = () => {
-    history.back();
+    clearSelectedChat();
   };
 
   return (
@@ -40,4 +40,5 @@ export default ChatItem;
 ChatItem.propTypes = {
   chat: PropTypes.object,
   chatWindow: PropTypes.bool,
+  clearSelectedChat: PropTypes.func,
 };

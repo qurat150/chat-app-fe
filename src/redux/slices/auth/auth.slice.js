@@ -58,8 +58,10 @@ const authSlice = createSlice({
       })
       .addCase(setUserProfilePicture.fulfilled, (state, action) => {
         if (state) {
-          state.currentUser.avatarImage = action.payload.image;
+          const { data, cb } = action.payload;
+          state.currentUser.avatarImage = data.image;
           state.currentUser.isAvatarImageSet = true;
+          cb();
         }
       })
       .addCase(setUserProfilePicture.rejected, (state) => {
